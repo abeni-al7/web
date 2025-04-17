@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        h1 {
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        button {
+            margin-top: 15px;
+            width: 100%;
+            padding: 10px;
+            background: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #218838;
+        }
+    </style>
+</head>
+<body>
+    <h1>Register</h1>
+    <form id="registrationForm">
+        <label for="fullname">Full Name</label>
+        <input type="text" id="fullname" name="fullname" required>
+
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required>
+
+        <label>Gender:</label>
+        <input type="radio" id="gender_male" name="gender" value="Male" required> <label for="gender_male">Male</label>
+        <input type="radio" id="gender_female" name="gender" value="Female"> <label for="gender_female">Female</label>
+
+        <label for="subscribe">Subscribe to newsletter:</label>
+        <input type="checkbox" id="subscribe" name="subscribe">
+
+        <label for="birthdate">Birth Date</label>
+        <input type="date" id="birthdate" name="birthdate">
+
+        <label for="favcolor">Favorite Color</label>
+        <input type="color" id="favcolor" name="favcolor">
+
+        <button type="submit">Submit</button>
+        <button type="button" id="reset">Reset</button>
+        <textarea name="data" id="data" cols="20" rows="20"></textarea>
+    </form>
+    
+
+    <script>
+        const form = document.getElementById("registrationForm");
+        form.addEventListener("submit", (event) => {
+            event.preventDefault();
+            const fullname = document.getElementById("fullname").value;
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            const gender = document.querySelector('input[name="gender"]:checked')?.value || '';
+            const subscribe = document.getElementById("subscribe").checked ? 'Yes' : 'No';
+            const birthdate = document.getElementById("birthdate").value;
+            const favcolor = document.getElementById("favcolor").value;
+            const textarea = document.getElementById("data");
+            textarea.value = `Full Name: ${fullname}\nEmail: ${email}\nPassword: ${password}\nGender: ${gender}\nSubscribe: ${subscribe}\nBirth Date: ${birthdate}\nFavorite Color: ${favcolor}`;
+        });
+        document.getElementById("reset").addEventListener("click", () => {
+            form.reset();
+            document.getElementById("data").value = "";
+        });
+    </script>
+</body>
+</html>

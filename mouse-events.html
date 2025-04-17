@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mouse Events Demo</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; max-width: 500px; margin: auto; }
+    #hoverBox {
+      width: 200px; height: 100px; background: #e0e0e0;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px; cursor: pointer; border: 1px solid #ccc;
+      transition: background 0.3s;
+    }
+    button { padding: 10px; margin: 5px 0; width: 100%; box-sizing: border-box; }
+  </style>
+</head>
+<body>
+  <h1>Mouse Events Demo</h1>
+  <div id="hoverBox">Hover over this box</div>
+  <button id="refreshBtn">Refresh Page</button>
+  <button id="redirectBtn">Go to Word Splitter</button>
+
+  <script>
+    const box = document.getElementById('hoverBox');
+    box.addEventListener('mouseover', () => {
+      box.textContent = 'Mouse is over!';
+      box.style.backgroundColor = '#ffeb3b';
+    });
+    box.addEventListener('mouseout', () => {
+      box.textContent = 'Hover over this box';
+      box.style.backgroundColor = '#e0e0e0';
+    });
+
+    document.getElementById('refreshBtn').addEventListener('click', () => {
+      location.reload();
+    });
+    document.getElementById('redirectBtn').addEventListener('click', () => {
+      window.location.href = 'word-split.html';
+    });
+  </script>
+</body>
+</html>

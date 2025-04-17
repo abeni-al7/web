@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Event Demo</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; max-width: 500px; margin: auto; }
+    #log { margin-top: 20px; border: 1px solid #ccc; padding: 10px; height: 150px; overflow-y: auto; background: #f9f9f9; }
+    #log p { margin: 2px 0; font-size: 0.9em; }
+  </style>
+</head>
+<body>
+  <h1>Event Demo</h1>
+  <label for="input1">Text Field 1:</label>
+  <input type="text" id="input1">
+  <br><br>
+  <label for="input2">Text Field 2:</label>
+  <input type="text" id="input2">
+  <br><br>
+  <label for="select1">Choose an option:</label>
+  <select id="select1">
+    <option value="">-- Select --</option>
+    <option value="A">Option A</option>
+    <option value="B">Option B</option>
+    <option value="C">Option C</option>
+  </select>
+
+  <div id="log"></div>
+
+  <script>
+    function logEvent(e) {
+      const entry = document.createElement('p');
+      entry.textContent = `${e.type} on '${e.target.id}' (value='${e.target.value}')`;
+      document.getElementById('log').appendChild(entry);
+    }
+    ['focus','blur','change'].forEach(evt => {
+      document.getElementById('input1').addEventListener(evt, logEvent);
+      document.getElementById('input2').addEventListener(evt, logEvent);
+      document.getElementById('select1').addEventListener(evt, logEvent);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Word Splitter</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; max-width: 600px; margin: auto; }
+    input, button { padding: 8px; margin-top: 10px; width: 100%; box-sizing: border-box; }
+    #result { margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <h1>Word Splitter</h1>
+  <label for="inputString">Enter a string with non-alphabetic separators:</label>
+  <input type="text" id="inputString" placeholder="e.g. hello,world! this-is a_test">
+  <button id="splitBtn">Split into Words</button>
+  <div id="result"></div>
+
+  <script>
+    document.getElementById('splitBtn').addEventListener('click', () => {
+      const input = document.getElementById('inputString').value;
+      const words = input.split(/[^A-Za-z]+/).filter(w => w.length > 0);
+      const resultDiv = document.getElementById('result');
+      if (words.length) {
+        resultDiv.textContent = 'Words: ' + words.join(', ');
+      } else {
+        resultDiv.textContent = 'No valid words found.';
+      }
+    });
+  </script>
+</body>
+</html>

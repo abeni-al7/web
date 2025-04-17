@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Largest Palindromic Substring</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; max-width: 500px; margin: auto; }
+    input, button { padding: 8px; margin-top: 10px; width: 100%; box-sizing: border-box; }
+    #result { margin-top: 20px; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>Find Largest Palindrome</h1>
+  <label for="inputString">Enter a string:</label>
+  <input type="text" id="inputString" placeholder="Enter a string">
+  <button id="findBtn">Find Largest Palindromic Substring</button>
+  <div id="result"></div>
+
+  <script>
+    function isPalindrome(str) {
+      return str === str.split('').reverse().join('');
+    }
+    function findLargestPalindrome(s) {
+      let max = '';
+      for (let i = 0; i < s.length; i++) {
+        for (let j = i + 1; j <= s.length; j++) {
+          const substr = s.slice(i, j);
+          if (substr.length > max.length && isPalindrome(substr)) {
+            max = substr;
+          }
+        }
+      }
+      return max || '(none)';
+    }
+    document.getElementById('findBtn').addEventListener('click', () => {
+      const input = document.getElementById('inputString').value;
+      const result = findLargestPalindrome(input);
+      document.getElementById('result').textContent = 
+        `Largest palindrome: ${result}`;
+    });
+  </script>
+</body>
+</html>
