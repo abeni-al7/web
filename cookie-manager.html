@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cookie Manager</title>
+</head>
+<body>
+  <h1>Cookie Manager</h1>
+
+  <div>
+    <label>Cookie Name: <input id="cookieName" type="text"></label>
+    <label>Value: <input id="cookieValue" type="text"></label>
+    <label>Expires (days): <input id="cookieDays" type="number" value="7" min="1"></label>
+    <button id="createCookieBtn">Create Cookie</button>
+  </div>
+  
+  <div>
+    <button id="showCookiesBtn">Show Cookies</button>
+  </div>
+  
+  <div>
+    <label>Delete Cookie Name: <input id="deleteName" type="text"></label>
+    <button id="deleteCookieBtn">Delete Cookie</button>
+    <button id="deleteAllBtn">Delete All Cookies</button>
+  </div>
+  <h2>Current Cookies:</h2>
+  <div id="cookiesList"></div>
+
+  <script>
+    function setCookie(name, value, days) {
+      const expires = new Date(Date.now() + days * 864e5).toUTCString();
+      document.cookie = `${name}=${encodeURIComponent(value)}; expires=${expires}; path=/`;
+    }
+
+    function getAllCookies() {
+      return document.cookie.split('; ').reduce((acc, pair) => {
+        if (!pair) return acc;
+        const [n, v] = pair.split('=');
+        acc[n] = decodeURIComponent(v);
+        return acc;
+      }, {});
+    }
+
+    function deleteCookie(name) {
+      document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/`;
+    }
+
+    function updateDisplay() {
+      const list = getAllCookies();
+      const container = document.getElementById('cookiesList');
+      container.innerHTML = '';
+      if (Object.keys(list).length === 0) {
+        container.textContent = 'No cookies set.';
+        return;
+      }
+      const ul = document.createElement('ul');
+      for (const name in list) {
+        const li = document.createElement('li');
+        li.textContent = `${name} = ${list[name]}`;
+        ul.appendChild(li);
+      }
+      container.appendChild(ul);
+    }
+
+    document.getElementById('createCookieBtn').addEventListener('click', () => {
+      const name = document.getElementById('cookieName').value.trim();
+      const value = document.getElementById('cookieValue').value.trim();
+      const days = parseInt(document.getElementById('cookieDays').value, 10);
+      if (name && value && days > 0) {
+        setCookie(name, value, days);
+        updateDisplay();
+      }
+    });
+
+    document.getElementById('showCookiesBtn').addEventListener('click', updateDisplay);
+    document.getElementById('deleteCookieBtn').addEventListener('click', () => {
+      const name = document.getElementById('deleteName').value.trim();
+      if (name) {
+        deleteCookie(name);
+        updateDisplay();
+      }
+    });
+    document.getElementById('deleteAllBtn').addEventListener('click', () => {
+      const cookies = getAllCookies();
+      for (const name in cookies) deleteCookie(name);
+      updateDisplay();
+    });
+
+    updateDisplay();
+  </script>
+</body>
+</html>
