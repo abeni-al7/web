@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Remove Duplicates from Array</title>
+</head>
+<body>
+  <h1>Remove Duplicate Elements</h1>
+  <p>Enter array elements separated by commas:</p>
+  <input id="arrayInput" type="text" placeholder="e.g. 1,2,2,3,4,1">
+  <button id="removeButton">Remove Duplicates</button>
+  <h2>Result:</h2>
+  <div id="result"></div>
+
+  <script>
+    document.getElementById('removeButton').addEventListener('click', function() {
+      const input = document.getElementById('arrayInput').value;
+      if (!input) {
+        document.getElementById('result').textContent = 'Please enter some values.';
+        return;
+      }
+    
+      const arr = input.split(',').map(item => item.trim());
+    
+      const uniqueArr = [...new Set(arr)];
+   
+      document.getElementById('result').textContent = '[' + uniqueArr.join(', ') + ']';
+    });
+  </script>
+</body>
+</html>
