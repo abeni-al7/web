@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Registration with Validation</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; max-width: 400px; margin: auto; }
+    form div { margin-bottom: 15px; }
+    label { display: block; margin-bottom: 5px; }
+    input { width: 100%; padding: 8px; box-sizing: border-box; }
+    .error { color: red; font-size: 0.9em; height: 1em; }
+    button { padding: 10px; width: 100%; background: #28a745; color: #fff; border: none; cursor: pointer; }
+    button:hover { background: #218838; }
+  </style>
+</head>
+<body>
+  <h1>Registration Form</h1>
+  <form id="regForm" novalidate>
+    <div>
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" required>
+      <div class="error" id="nameError"></div>
+    </div>
+    <div>
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required>
+      <div class="error" id="emailError"></div>
+    </div>
+    <div>
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" required>
+      <div class="error" id="passwordError"></div>
+    </div>
+    <div>
+      <label for="age">Age</label>
+      <input type="number" id="age" name="age" min="1" required>
+      <div class="error" id="ageError"></div>
+    </div>
+    <div>
+      <label for="dob">Date of Birth</label>
+      <input type="date" id="dob" name="dob" required>
+      <div class="error" id="dobError"></div>
+    </div>
+    <div>
+      <label for="phone">Phone Number</label>
+      <input type="tel" id="phone" name="phone" placeholder="e.g. 0912345678" required>
+      <div class="error" id="phoneError"></div>
+    </div>
+    <button type="submit">Submit</button>
+  </form>
+  <script>
+    const form = document.getElementById('regForm');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      let valid = true;
+     
+      document.querySelectorAll('.error').forEach(el => el.textContent = '');
+    
+      const name = form.name.value.trim();
+      if (!name) {
+        valid = false;
+        document.getElementById('nameError').textContent = 'Name is required.';
+      }
+    
+      const email = form.email.value.trim();
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailPattern.test(email)) {
+        valid = false;
+        document.getElementById('emailError').textContent = 'Enter a valid email.';
+      }
+      
+      const pwd = form.password.value;
+      if (pwd.length < 6) {
+        valid = false;
+        document.getElementById('passwordError').textContent = 'Password must be at least 6 characters.';
+      }
+     
+      const age = parseInt(form.age.value, 10);
+      if (isNaN(age) || age < 1) {
+        valid = false;
+        document.getElementById('ageError').textContent = 'Enter a valid age.';
+      }
+      
+      const dob = new Date(form.dob.value);
+      const today = new Date();
+      if (isNaN(dob.getTime()) || dob >= today) {
+        valid = false;
+        document.getElementById('dobError').textContent = 'Enter a valid past date.';
+      }
+      
+      const phone = form.phone.value.trim();
+      const phonePattern = /^\d{10}$/;
+      if (!phonePattern.test(phone)) {
+        valid = false;
+        document.getElementById('phoneError').textContent = 'Enter a 10-digit number.';
+      }
+      if (valid) {
+        alert('Form submitted successfully!');
+        form.reset();
+      }
+    });
+  </script>
+</body>
+</html>
