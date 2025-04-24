@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Change Link Example</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <!-- existing code -->
+  <a id="myLink" href="https://example.com">Visit Example</a>
+
+  <script>
+    $(document).ready(function() {
+      // Change the hyperlink URL and the displayed text
+      $('#myLink')
+        .attr('href', 'https://newsite.com')
+        .text('Visit New Site');
+    });
+  </script>
+</body>
+</html>
