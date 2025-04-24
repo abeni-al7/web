@@ -30,14 +30,14 @@
   <script>
     function setCookie(name, value, days) {
       const expires = new Date(Date.now() + days * 864e5).toUTCString();
-      document.cookie = `${name}=${encodeURIComponent(value)}; expires=${expires}; path=/`;
+      document.cookie = `${name}=${value}; expires=${expires}; path=/`;
     }
 
     function getAllCookies() {
       return document.cookie.split('; ').reduce((acc, pair) => {
         if (!pair) return acc;
         const [n, v] = pair.split('=');
-        acc[n] = decodeURIComponent(v);
+        acc[n] = v;
         return acc;
       }, {});
     }

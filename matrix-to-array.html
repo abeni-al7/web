@@ -25,7 +25,7 @@
       try {
         const arr = JSON.parse(input);
         if (!Array.isArray(arr)) throw new Error();
-        const flatArr = arr.flat(Infinity);
+        const flatArr = arr.flat();
         resultDiv.textContent = '[' + flatArr.join(', ') + ']';
       } catch (e) {
         resultDiv.textContent = 'Invalid JSON array format.';
