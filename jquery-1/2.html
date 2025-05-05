@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Change Link using JQuery</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <a id="myLink" href="https://example.com">Visit Example.com</a>
+
+    <script>
+    $(function() {
+        var $link = $('#myLink'),
+            originalHref = $link.attr('href'),
+            originalText = $link.text(),
+            newHref = 'https://google.com',
+            newText = 'Visit Google';
+
+        $link.hover(
+            function() {
+                $link.attr('href', newHref).text(newText);
+            },
+            function() {
+                $link.attr('href', originalHref).text(originalText);
+            }
+        );
+    });
+    </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Click and Double-Click Effects</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        #actionParagraph { position: relative; padding: 20px; background: #eef; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <p id="actionParagraph">Click or double-click this paragraph to see effects!</p>
+    <script>
+    $(function() {
+        $('#actionParagraph')
+            .on('click', function() {
+                // shake effect
+                $(this)
+                  .animate({ left: '+=10px' }, 100)
+                  .animate({ left: '-=20px' }, 100)
+                  .animate({ left: '+=10px' }, 100);
+            })
+            .on('dblclick', function() {
+                // fade out and in
+                $(this).fadeOut(400).fadeIn(400);
+            });
+    });
+    </script>
+</body>
+</html>

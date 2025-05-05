@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Remove Array Item on Button Click</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <ul id="itemsList"></ul>
+
+    <script>
+    $(function() {
+        var items = ['Apple', 'Banana', 'Cherry', 'Date', 'Elderberry'];
+
+        function render() {
+            var $list = $('#itemsList').empty();
+            $.each(items, function(index, value) {
+                var $li = $('<li>').text(value + ' ');
+                var $btn = $('<button>').text('Remove').data('value', value);
+                $btn.on('click', function() {
+                    removeItem($(this).data('value'));
+                });
+                $li.append($btn);
+                $list.append($li);
+            });
+        }
+
+        function removeItem(val) {
+            items = $.grep(items, function(v) {
+                return v !== val;
+            });
+            render();
+        }
+
+        render();
+    });
+    </script>
+</body>
+</html>

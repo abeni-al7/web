@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Toggle Background on Double-Click</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        #togglePara { padding: 20px; cursor: pointer; }
+        .highlight { background-color: yellow; }
+    </style>
+</head>
+<body>
+    <p id="togglePara">Double-click this paragraph to toggle its background color.</p>
+
+    <script>
+    $(function() {
+        $('#togglePara').on('dblclick', function() {
+            $(this).toggleClass('highlight');
+        });
+    });
+    </script>
+</body>
+</html>

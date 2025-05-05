@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Underline Paragraph using JQuery</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <p id="myParagraph">This is a sample paragraph whose words will be underlined when you click the button.</p>
+    <button id="underlineBtn">Underline Words</button>
+
+    <script>
+    $(function() {
+        $('#underlineBtn').on('click', function() {
+            var words = $('#myParagraph').text().split(' ');
+            var underlined = $.map(words, function(w){ return '<u>' + w + '</u>'; }).join(' ');
+            $('#myParagraph').html(underlined);
+        });
+    });
+    </script>
+</body>
+</html>
