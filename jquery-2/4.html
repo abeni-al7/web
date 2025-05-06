@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Show Form Values</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    form { max-width: 400px; margin: 20px; }
+    .field { margin-bottom: 10px; }
+    #result { margin-top: 20px; padding: 10px; border: 1px solid #ccc; }
+  </style>
+</head>
+<body>
+  <h1>Enter Your Details</h1>
+  <form id="userForm">
+    <div class="field">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
+    </div>
+    <div class="field">
+      <label for="age">Age:</label>
+      <input type="number" id="age" name="age" required>
+    </div>
+    <div class="field">
+      <label>Gender:</label>
+      <label><input type="radio" name="gender" value="Male" required> Male</label>
+      <label><input type="radio" name="gender" value="Female"> Female</label>
+    </div>
+    <div class="field">
+      <label>Hobbies:</label>
+      <label><input type="checkbox" name="hobbies" value="Reading"> Reading</label>
+      <label><input type="checkbox" name="hobbies" value="Traveling"> Traveling</label>
+      <label><input type="checkbox" name="hobbies" value="Coding"> Coding</label>
+      <label><input type="checkbox" name="hobbies" value="Sports"> Sports</label>
+    </div>
+    <button type="submit">Submit</button>
+  </form>
+  <div id="result"></div>
+
+  <script>
+    $(function() {
+      $('#userForm').on('submit', function(e) {
+        e.preventDefault();
+        var name = $('#name').val();
+        var age = $('#age').val();
+        var gender = $('input[name="gender"]:checked').val();
+        var hobbies = $('input[name="hobbies"]:checked')
+                       .map(function() { return this.value; }).get().join(', ');
+        $('#result').html(
+          '<h3>Submitted Values:</h3>' +
+          '<p><strong>Name:</strong> ' + name + '</p>' +
+          '<p><strong>Age:</strong> ' + age + '</p>' +
+          '<p><strong>Gender:</strong> ' + gender + '</p>' +
+          '<p><strong>Hobbies:</strong> ' + (hobbies || 'None') + '</p>'
+        );
+      });
+    });
+  </script>
+</body>
+</html>

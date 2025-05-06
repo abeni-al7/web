@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Image Switcher</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    #switchImg {
+      cursor: pointer;
+      max-width: 100%;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>Click Image to Switch</h1>
+  <img id="switchImg" src="OIP (1).jpg" alt="Switchable Image">
+
+  <script>
+    $(function() {
+      var img1 = 'OIP (1).jpg';
+      var img2 = 'OIP (2).jpg';
+      $('#switchImg').on('click', function() {
+        var current = $(this).attr('src');
+        $(this).attr('src', current === img1 ? img2 : img1);
+      });
+    });
+  </script>
+</body>
+</html>
