@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Register</h1>
+    <form enctype="multipart/form-data">
+        <label for="fname">Full name</label>
+        <input type="text" name="fname"> <br>
+        <label for="phone">Phone</label>
+        <input type="tel" name="phone"> <br>
+        <label for="age">Age</label>
+        <input type="number" name="age"> <br>
+        <label for="color">Your Favorite Color</label>
+        <input type="color" name="color"> <br>
+        <label for="Birthdate">Birthdate</label>
+        <input type="date"> <br>
+        <label for="gender">Gender:</label><br>
+        <input type="radio" name="gender" value="m"> <label for="m">Male</label><br>
+        <input type="radio" name="gender" value="f"> <label for="f">Female</label><br>
+        <label for="pass">Password</label>
+        <input type="password" name="pass"><br>
+        <label for="confirm-pass">Confirm Password</label>
+        <input type="password" name="confirm-pass"><br>
+        <label for="skill">Skills</label><br>
+        <input type="checkbox" name="skill" value="html"> <label for="html">HTML</label><br>
+        <input type="checkbox" name="skill" value="css"> <label for="css">CSS</label><br>
+        <input type="checkbox" name="skill" value="js"> <label for="js">JavaScript</label><br>
+        <input type="checkbox" name="skill" value="php"> <label for="php">PHP</label><br>
+        <label for="country">Country</label>
+        <select name="country" id="country">
+            <option value="Eth" selected>Ethiopia</option>
+            <option value="usa" selected>USA</option>
+            <option value="uk" selected>UK</option>
+        </select><br>
+        <label for="pic">Photo</label>
+        <input type="file"><br>
+        Describe Yourself <br>
+        <textarea name="desc" id="desc" rows="4" cols="50"></textarea><br>
+        <input type="submit" value="Submit" name="Submitbtn">
+        <input type="reset" value="Reset" name="resetbtn">
+    </form>
+    Follow Us On <a href="https://facebook.com">Facebook</a> | <a href="https://twitter.com">Twitter</a>
+</body>
+</html>
